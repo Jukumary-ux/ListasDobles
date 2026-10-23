@@ -76,22 +76,23 @@ void ListaDoble::setCola(Nodo* newCola) {
 Nodo* ListaDoble::getCabeza() { 
     return cabeza; 
 }
-void ListaSimple::setCabeza(Nodo* newCabeza) { 
+void ListaDoble::setCabeza(Nodo* newCabeza) { 
     cabeza = newCabeza;
 }
 
-void ListaSimple::insertar(string cedula, string nombre, string apellido) {
+void ListaDoble::insertar(string cedula, string nombre, string apellido) {
     Nodo* nuevo = new Nodo(cedula, nombre, apellido);
     if (cabeza == nullptr) {
         cabeza = nuevo;
         cola = nuevo;
     } else {
         cola->setSiguiente(nuevo);
+        cola->setSiguiente(nuevo);
         cola = nuevo;
     }
 }
 
-void ListaSimple::imprimir() {
+void ListaDoble::imprimir() {
     Nodo* aux = cabeza;
     while (aux != nullptr) {
         cout << aux->getCedula() << " - "
@@ -101,29 +102,35 @@ void ListaSimple::imprimir() {
     }
 }
 
-Nodo* ListaSimple::buscar(string cedula) {
+Nodo* ListaDoble::buscar(string cedula) {
     Nodo* aux = cabeza;
     while (aux != nullptr) {
         if (aux->getCedula() == cedula) return aux;
         aux = aux->getSiguiente();
     }
     return nullptr;
+
 }
 
-bool ListaSimple::borrar(string cedula) {
-    Nodo* aux = cabeza;
-    Nodo* anterior = nullptr;
+bool ListaDoble::borrar(string cedula) {
+    Nodo* aux = buscar(cedula);
 
-    while (aux != nullptr && aux->getCedula() != cedula) {
-        anterior = aux;
-        aux = aux->getSiguiente();
+    if (aux == nullptr) {
+        return false;
     }
-    if (aux == nullptr) return false;   // no se encontró
+    //si existe un nodo anterior
+    if (aux->getAnterior() != nullptr) {
+        aux->getAnterior()->setSiguiente(aux->getSiguiente());
+    } else {
+        cabeza = aux->getSiguiente();
+    }
 
-    if (anterior == nullptr) cabeza = aux->getSiguiente();   // era la cabeza
-    else anterior->setSiguiente(aux->getSiguiente());
-
-    if (aux == cola) cola = anterior;   // era la cola
+    //si existe un nodo siguiente
+    if (aux->getSiguiente() != nullptr) {
+        aux->getSiguiente()->setAnterior(aux->getAnterior());
+    } else {
+        cola = aux->getAnterior();
+    }
 
     delete aux;
     return true;
