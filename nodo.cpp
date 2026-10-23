@@ -6,6 +6,7 @@ Nodo::Nodo() {
     nombre = string();
     apellido = string();
     siguiente = nullptr;
+    anterior = nullptr;
 }
 
 Nodo::Nodo(string cedula, string nombre, string apellido) {
@@ -13,6 +14,7 @@ Nodo::Nodo(string cedula, string nombre, string apellido) {
     this->nombre = nombre;
     this->apellido = apellido;
     siguiente = nullptr;
+    anterior = nullptr;
 }
 
 Nodo::~Nodo() {
