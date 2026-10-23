@@ -10,6 +10,7 @@ private:
     string nombre;
     string apellido;
     Nodo* siguiente;
+    Nodo* anterior;
 
 public:
     Nodo();
@@ -24,6 +25,8 @@ public:
     void setApellido(string newApellido);
     Nodo* getSiguiente();
     void setSiguiente(Nodo* newSiguiente);
+    Nodo* getAnterior();
+    void setAnterior(Nodo* newAnterior);
 };
 
 class ListaSimple {
@@ -32,8 +35,8 @@ private:
     Nodo* cabeza;
 
 public:
-    ListaSimple();
-    ~ListaSimple();
+    ListaDoble();
+    ~ListaDoble();
 
     Nodo* getCola();
     void setCola(Nodo* newCola);
