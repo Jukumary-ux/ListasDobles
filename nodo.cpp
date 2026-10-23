@@ -45,27 +45,35 @@ Nodo* Nodo::getSiguiente() {
 void Nodo::setSiguiente(Nodo* newSiguiente) { 
     siguiente = newSiguiente; 
 }
+Nodo* Nodo::getAnterior() {
+    return anterior;
+}
 
-ListaSimple::ListaSimple() {
+void Nodo::setAnterior(Nodo* newAnterior) {
+    anterior = newAnterior;
+}
+
+ListaDoble::ListaDoble() {
     cabeza = nullptr;
     cola = nullptr;
 }
 
-ListaSimple::~ListaSimple() {
+ListaDoble::~ListaDoble() {
     while (cabeza != nullptr) {
         Nodo* aux = cabeza;
         cabeza = cabeza->getSiguiente();
         delete aux;
     }
+    cola = nullptr;
 }
 
-Nodo* ListaSimple::getCola() { 
+Nodo* ListaDoble::getCola() { 
     return cola;
  }
-void ListaSimple::setCola(Nodo* newCola) { 
+void ListaDoble::setCola(Nodo* newCola) { 
     cola = newCola;
  }
-Nodo* ListaSimple::getCabeza() { 
+Nodo* ListaDoble::getCabeza() { 
     return cabeza; 
 }
 void ListaSimple::setCabeza(Nodo* newCabeza) { 
