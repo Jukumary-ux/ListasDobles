@@ -29,7 +29,7 @@ public:
     void setAnterior(Nodo* newAnterior);
 };
 
-class ListaSimple {
+class ListaDoble {
 private:
     Nodo* cola;
     Nodo* cabeza;
@@ -40,10 +40,12 @@ public:
 
     Nodo* getCola();
     void setCola(Nodo* newCola);
+
     Nodo* getCabeza();
     void setCabeza(Nodo* newCabeza);
 
-   
+    void imprimirReversa();
+    
     void insertar(string cedula, string nombre, string apellido);
     void imprimir();
     Nodo* buscar(string cedula);

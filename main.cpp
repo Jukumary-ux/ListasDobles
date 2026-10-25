@@ -1,8 +1,22 @@
 #include <iostream>
 #include "nodo.h"
 
+bool validarLetras(string texto) {
+    if (texto.empty()) {
+        return false;
+    }
+
+    for (char letra : texto) {
+        if (!((letra >= 'A' && letra <= 'Z') ||
+              (letra >= 'a' && letra <= 'z'))) {
+            return false;
+        }
+    }
+
+    return true;
+}
 int main() {
-    ListaSimple lista;
+    ListaDoble lista;
     int opcion;
     string cedula, nombre, apellido;
 
@@ -12,22 +26,40 @@ int main() {
         cout << "2. Imprimir" << endl;
         cout << "3. Buscar" << endl;
         cout << "4. Borrar" << endl;
+        cout << "5. Imprimir Reversa" << endl;
         cout << "0. Salir" << endl;
         cout << "Opcion: ";
         cin >> opcion;
         cin.ignore();   
 
         switch (opcion) {
-            case 1:
-                cout << "Cedula: ";
-                getline(cin, cedula);
+        case 1:
+            cout << "Cedula: ";
+            getline(cin, cedula);
+
+            do {
                 cout << "Nombre: ";
                 getline(cin, nombre);
+
+                if (!validarLetras(nombre)) {
+                    cout << "Error, ingrese solo letras" << endl;
+                }
+
+            } while (!validarLetras(nombre));
+
+            do {
                 cout << "Apellido: ";
                 getline(cin, apellido);
-                lista.insertar(cedula, nombre, apellido);
-                cout << "Insertado." << endl;
-                break;
+
+                if (!validarLetras(apellido)) {
+                    cout << "Error, ingrese solo letras" << endl;
+                }
+
+            } while (!validarLetras(apellido));
+
+            lista.insertar(cedula, nombre, apellido);
+            cout << "Registrado correctamente." << endl;
+            break;
 
             case 2:
                 if (lista.getCabeza() == nullptr)
@@ -56,7 +88,14 @@ int main() {
                 else
                     cout << "No existe esa cedula." << endl;
                 break;
-
+            case 5:
+                if (lista.getCabeza() == nullptr) {
+                    cout << "La lista esta vacia." << endl;
+                } else {
+                    cout << "\nLista en reversa:" << endl;
+                    lista.imprimirReversa();
+                }
+                break;
             case 0:
                 cout << "Salir" << endl;
                 break;

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "nodo.h"
+using namespace std;
 
 Nodo::Nodo() {
     cedula = string();
@@ -86,7 +87,7 @@ void ListaDoble::insertar(string cedula, string nombre, string apellido) {
         cabeza = nuevo;
         cola = nuevo;
     } else {
-        cola->setSiguiente(nuevo);
+        nuevo->setAnterior(cola);
         cola->setSiguiente(nuevo);
         cola = nuevo;
     }
@@ -134,4 +135,15 @@ bool ListaDoble::borrar(string cedula) {
 
     delete aux;
     return true;
+}
+void ListaDoble::imprimirReversa() {
+    Nodo* aux = cola;
+
+    while (aux != nullptr) {
+        cout << aux->getCedula() << " - "
+             << aux->getNombre() << " "
+             << aux->getApellido() << endl;
+
+        aux = aux->getAnterior();
+    }
 }
