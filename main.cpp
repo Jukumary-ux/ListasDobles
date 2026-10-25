@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <limits>
+using namespace std;
 #include "nodo.h"
 
 bool validarLetras(string texto) {
@@ -29,9 +32,18 @@ int main() {
         cout << "5. Imprimir Reversa" << endl;
         cout << "0. Salir" << endl;
         cout << "Opcion: ";
-        cin >> opcion;
-        cin.ignore();   
 
+        if (!(cin >> opcion)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Error, ingresar solo numeros" << endl;
+            opcion = -1;
+            continue;
+        }
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        
         switch (opcion) {
         case 1:
             cout << "Cedula: ";
