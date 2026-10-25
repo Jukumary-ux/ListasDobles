@@ -4,6 +4,39 @@
 using namespace std;
 #include "nodo.h"
 
+bool validarCedula(string cedula) {
+    if(cedula.length() != 10) {
+        return false;
+    }
+
+    for (char digito : cedula) {
+        if (!(digito >= '0' && digito <= '9')) {
+            return false;
+        }
+    }
+
+    int codigoVerificador = cedula[9] - '0';
+    int suma = 0, digito, codigoVerificadorCalculado;
+    for(int i = 0; i < 9; i++){
+        digito = cedula[i] - '0';
+        if(i % 2 == 0){
+            digito *= 2;
+            if(digito > 9){
+                digito -= 9;
+            }
+        }
+        suma += digito;
+    }
+
+    codigoVerificadorCalculado = suma%10;
+    if(codigoVerificadorCalculado != 0){
+        codigoVerificadorCalculado = 10 - codigoVerificadorCalculado;
+    }
+
+
+    return codigoVerificador == codigoVerificadorCalculado;
+}
+
 bool validarLetras(string texto) {
     if (texto.empty()) {
         return false;
@@ -18,6 +51,7 @@ bool validarLetras(string texto) {
 
     return true;
 }
+
 int main() {
     ListaDoble lista;
     int opcion;
@@ -46,8 +80,13 @@ int main() {
         
         switch (opcion) {
         case 1:
+        do {
             cout << "Cedula: ";
             getline(cin, cedula);
+            if (!validarCedula(cedula)) {
+                cout << "Error, ingrese una cedula valida" << endl;
+            }
+        }while (!validarCedula(cedula));
 
             do {
                 cout << "Nombre: ";
