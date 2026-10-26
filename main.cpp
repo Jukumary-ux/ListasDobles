@@ -148,7 +148,7 @@ int main() {
                     lista.imprimirReversa();
                 }
                 break;
-            case 6:
+            case 6:{
                 if(lista.getCabeza()== nullptr){
                     cout << "La lista esta vacia" << endl;
                     break;
@@ -162,7 +162,7 @@ int main() {
                     cout << "Total encontrados: " << total << endl;
                 }
                 break;
-
+            }
             case 0:
                 cout << "Salir" << endl;
                 break;
