@@ -83,12 +83,13 @@ int main() {
         case 1:
         do {
             cout << "Cedula: ";
+            getline(cin,cedula);
             if (!validarCedula(cedula)) {
                 cout << "Error, ingrese una cedula valida" << endl;
             }else if(lista.buscar(cedula) != nullptr) {
                 cout << "Error. esa cedula ya esta registrada" << endl;
             }
-        }while (!validarCedula(cedula));
+        }while (!validarCedula(cedula) || lista.buscar(cedula) != nullptr);
 
             do {
                 cout << "Nombre: ";
@@ -124,11 +125,12 @@ int main() {
             case 3: {
                 if(lista.getCabeza()== nullptr){
                     cout << "La lista esta vacia."<< endl;
+                    break;
                 }
                 cout << "Cedula a buscar: ";
                  getline(cin, cedula);
                  if(!validarCedula(cedula)){
-                    cout <<"Cedula Invalida," << endl;
+                    cout <<"Cedula Invalida"<<endl;
                     break;
                  }
                 Nodo* encontrado = lista.buscar(cedula);
