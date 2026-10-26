@@ -64,6 +64,7 @@ int main() {
         cout << "3. Buscar" << endl;
         cout << "4. Borrar" << endl;
         cout << "5. Imprimir Reversa" << endl;
+        cout << "6. Buscar por Apellido" << endl;
         cout << "0. Salir" << endl;
         cout << "Opcion: ";
 
@@ -147,6 +148,21 @@ int main() {
                     lista.imprimirReversa();
                 }
                 break;
+            case 6:
+                if(lista.getCabeza()== nullptr){
+                    cout << "La lista esta vacia" << endl;
+                    break;
+                }
+                cout << "Apellido a buscar : ";
+                getline(cin,apellido);
+                int total = lista.buscarPorApellido(apellido);
+                if (total = 0){
+                    cout << "No hay personas con ese apellido registrado" << endl;
+                }else{
+                    cout << "Total encontrados: " << total << endl;
+                }
+                break;
+
             case 0:
                 cout << "Salir" << endl;
                 break;

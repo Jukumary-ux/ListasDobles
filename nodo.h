@@ -50,6 +50,7 @@ public:
     void imprimir();
     Nodo* buscar(string cedula);
     bool borrar(string cedula);
+    int buscarPorApellido(string apellido);
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 #include "nodo.h"
 using namespace std;
 
@@ -146,4 +147,24 @@ void ListaDoble::imprimirReversa() {
 
         aux = aux->getAnterior();
     }
+}
+static string convertirMinusculas(string texto){
+    for(char &c : texto){
+        c = tolower((unsigned char)c);
+    }
+    return texto;
+}
+int ListaDoble::buscarPorApellido(string apellido){
+    //variable que funciona con contador si se encuentra
+    int encontrados = 0;
+    string buscado = convertirMinusculas(apellido);
+    Nodo* aux = cabeza;
+    while (aux != nullptr){
+        if(convertirMinusculas(aux->getApellido())== buscado){
+            cout << aux->getCedula() << " - " << aux->getNombre() << " " << aux->getApellido() << endl;
+            encontrados++;
+        }
+        aux = aux->getSiguiente();
+    }
+    return encontrados;
 }
