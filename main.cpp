@@ -69,29 +69,30 @@ int main() {
         cout << "Opcion: ";
 
         if (!(cin >> opcion)) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+       cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-            cout << "Error, ingresar solo numeros" << endl;
-            opcion = -1;
-            continue;
-        }
-
+          cout << "Error, ingresar solo numeros" << endl;
+          opcion = -1;
+      continue;
+      }
+      
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         
         switch (opcion) {
         case 1:
         do {
             cout << "Cedula: ";
-            getline(cin, cedula);
             if (!validarCedula(cedula)) {
                 cout << "Error, ingrese una cedula valida" << endl;
+            }else if(lista.buscar(cedula) != nullptr) {
+                cout << "Error. esa cedula ya esta registrada" << endl;
             }
         }while (!validarCedula(cedula));
 
             do {
                 cout << "Nombre: ";
-                getline(cin, nombre);
+              getline(cin, nombre);
 
                 if (!validarLetras(nombre)) {
                     cout << "Error, ingrese solo letras" << endl;
@@ -100,8 +101,8 @@ int main() {
             } while (!validarLetras(nombre));
 
             do {
-                cout << "Apellido: ";
-                getline(cin, apellido);
+                cout << "Apellido: ";  
+              getline(cin, apellido);
 
                 if (!validarLetras(apellido)) {
                     cout << "Error, ingrese solo letras" << endl;
@@ -121,8 +122,15 @@ int main() {
                 break;
 
             case 3: {
+                if(lista.getCabeza()== nullptr){
+                    cout << "La lista esta vacia."<< endl;
+                }
                 cout << "Cedula a buscar: ";
-                getline(cin, cedula);
+                 getline(cin, cedula);
+                 if(!validarCedula(cedula)){
+                    cout <<"Cedula Invalida," << endl;
+                    break;
+                 }
                 Nodo* encontrado = lista.buscar(cedula);
                 if (encontrado != nullptr)
                     cout << "Encontrado: " << encontrado->getNombre()
@@ -133,8 +141,17 @@ int main() {
             }
 
             case 4:
+            if (lista.getCabeza() == nullptr) {              // (2) lista vacia
+                    cout << "La lista esta vacia." << endl;
+                    break;
+                }
                 cout << "Cedula a borrar: ";
-                getline(cin, cedula);
+              getline(cin, cedula);
+              if (!validarCedula(cedula)) {                    // (3) formato valido
+                    cout << "Cedula invalida." << endl;
+                    break;
+                }
+
                 if (lista.borrar(cedula))
                     cout << "Borrado." << endl;
                 else
@@ -149,16 +166,17 @@ int main() {
                 }
                 break;
             case 6:{
+                int total = 0;
                 if(lista.getCabeza()== nullptr){
                     cout << "La lista esta vacia" << endl;
                     break;
                 }
-                cout << "Apellido a buscar : ";
+                cout << "Apellido a buscar : "; 
                 getline(cin,apellido);
-                int total = lista.buscarPorApellido(apellido);
-                if (total = 0){
+                total = lista.buscarPorApellido(apellido);
+                if (total == 0){
                     cout << "No hay personas con ese apellido registrado" << endl;
-                }else{
+                }else {
                     cout << "Total encontrados: " << total << endl;
                 }
                 break;
