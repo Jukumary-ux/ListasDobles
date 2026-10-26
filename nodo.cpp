@@ -163,6 +163,7 @@ int ListaDoble::buscarPorApellido(string apellido){
         if(convertirMinusculas(aux->getApellido())== buscado){
             cout << aux->getCedula() << " - " << aux->getNombre() << " " << aux->getApellido() << endl;
             encontrados++;
+            cout << "Total:" << encontrados << endl; 
         }
         aux = aux->getSiguiente();
     }
