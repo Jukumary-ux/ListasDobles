@@ -170,3 +170,27 @@ int ListaDoble::buscarPorApellido(string apellido){
 
     return encontrados;
 }
+
+bool ListaDoble::modificarRegistro(
+    string cedulaActual,
+    string nuevaCedula,
+    string nuevoNombre,
+    string nuevoApellido
+) {
+    Nodo* registro = buscar(cedulaActual);
+
+    if (registro == nullptr) {
+        return false;
+    }
+
+    if (nuevaCedula != cedulaActual &&
+        buscar(nuevaCedula) != nullptr) {
+        return false;
+    }
+
+    registro->setCedula(nuevaCedula);
+    registro->setNombre(nuevoNombre);
+    registro->setApellido(nuevoApellido);
+
+    return true;
+}

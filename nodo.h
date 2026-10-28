@@ -51,6 +51,13 @@ public:
     Nodo* buscar(string cedula);
     bool borrar(string cedula);
     int buscarPorApellido(string apellido);
+    
+    bool modificarRegistro(
+    string cedulaActual,
+    string nuevaCedula,
+    string nuevoNombre,
+    string nuevoApellido
+);
 };
 
 #endif

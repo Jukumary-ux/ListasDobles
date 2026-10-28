@@ -65,17 +65,18 @@ int main() {
         cout << "4. Borrar" << endl;
         cout << "5. Imprimir Reversa" << endl;
         cout << "6. Buscar por Apellido" << endl;
+        cout << "7. Modificar registro" << endl;
         cout << "0. Salir" << endl;
         cout << "Opcion: ";
 
         if (!(cin >> opcion)) {
-       cin.clear();
+        cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
           cout << "Error, ingresar solo numeros" << endl;
           opcion = -1;
-      continue;
-      }
+        continue;
+         }
       
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         
@@ -183,6 +184,38 @@ int main() {
                 }
                 break;
             }
+            case 7: {
+                string cedulaActual;
+                string nuevaCedula;
+                string nuevoNombre;
+                string nuevoApellido;
+
+                cout << "Ingrese la cedula del registro a modificar: ";
+                cin >> cedulaActual;
+
+                cout << "Ingrese la nueva cedula: ";
+                cin >> nuevaCedula;
+
+                cout << "Ingrese el nuevo nombre: ";
+                cin >> nuevoNombre;
+
+                cout << "Ingrese el nuevo apellido: ";
+                cin >> nuevoApellido;
+
+                if (lista.modificarRegistro(
+                    cedulaActual,
+                    nuevaCedula,
+                    nuevoNombre,
+                    nuevoApellido
+                )) {
+                    cout << "Registro modificado correctamente." << endl;
+                } else {
+                    cout << "No se pudo modificar el registro." << endl;
+                }
+
+                break;
+            }
+
             case 0:
                 cout << "Salir" << endl;
                 break;
